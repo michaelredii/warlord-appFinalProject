@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+       xml:lang="en" lang="en">
+<h:head>
+    <title>Edit Warlord</title>
+</h:head>
+<h:body>
+    <h:form>
+        <p:panel id="panel" header="New Warlord">
+
+            <p:messages id="msgs" />
+
+            <h:panelGrid columns="3" cellpadding="5">
+                <p:outputLabel for="name" value="Name:" />
+                <p:inputText id="name" value="#{editWarlordView.name}" required="true" label="name">
+                    <p:ajax update="name" event="keyup" />
+                </p:inputText>
+                <p:message for="name" id="msgname" display="icon" />
+
+                <p:outputLabel for="nickname" value="Nickname:" />
+                <p:inputText id="nickname" value="#{editWarlordView.nickname}" label="nickname" required="true">
+                    <p:ajax update="msgnickname" event="keyup" />
+                </p:inputText>
+                <p:message for="nickname" id="msgnickname" display="icon" />
+
+                <p:outputLabel for="heroType" value="Hero Type"/>
+                <p:inputText label="heroType"
+                             id="heroType" value="#{editWarlordView.heroType}"
+                             required="true">
+                    <f:validator validatorId="heroTypeValidator"/>
+                    <p:ajax update="heroType" event="keyup"/>
+                </p:inputText>
+
+            </h:panelGrid>
+
+            <p:commandButton value="Save" update="panel" action="#{editWarlordView.save}" icon="pi pi-check" />
+        </p:panel>
+    </h:form>
+</h:body>
+</html>

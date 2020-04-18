@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xml:lang="en" lang="en">
+<h:head>
+    <title>Total War: Three Kingdoms Warlords</title>
+
+</h:head>
+<h:body>
+    <p:graphicImage library="images" name="3K_logo.png"/>
+    <h:form id="form">
+        <p:dataTable var="warlord" value="#{allWarlordsView.warlords}">
+
+            <p:column headerText="Picture">
+                <p:graphicImage library="images" name="#{warlord.name.toLowerCase()}.jpg"/>
+            </p:column>
+
+            <p:column headerText="Name">
+                <h:outputText value="#{warlord.name}"/>
+            </p:column>
+
+            <p:column headerText="Nickname">
+                <h:outputText value="#{warlord.nickname}"/>
+            </p:column>
+
+            <p:column headerText="Hero Type">
+                <h:outputText value="#{warlord.heroType}"/>
+            </p:column>
+
+            <p:column>
+                <p:commandButton value="Delete warlord" action="#{allWarlordsView.deleteWarlords(warlord.id)}"/>
+            </p:column>
+            <p:column>
+                <p:commandButton value="Update warlord" action="#{allWarlordsView.redirectToEditWarlord}">
+                    <f:actionListener binding="#{editWarlordView.populateView(warlord.id)}"/>
+                </p:commandButton>
+            </p:column>
+
+        </p:dataTable>
+        <p:commandButton value="Add Warlord" action="#{allWarlordsView.redirectToEditWarlord}"/>
+    </h:form>
+</h:body>
+</html>
